@@ -81,13 +81,13 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://transfer.sh/{}.{}".format(str(update.from_user.id), str(download_extension))
+            url = "https://api.anonymousfiles.io/"
             max_days = "5"
             command_to_exec = [
                 "curl",
                 # "-H", 'Max-Downloads: 1',
-                "-H", 'Max-Days: 5', # + max_days + '',
-                "--upload-file", after_download_file_name,
+                "-F", # + max_days + '',
+                "file=@", after_download_file_name,
                 url
             ]
             bot.edit_message_text(
@@ -113,7 +113,7 @@ def get_link(bot, update):
                 adfulurl = requests.get(shorten_api_url).text
         bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(url, max_days),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response, max_days),
             parse_mode=pyrogram.ParseMode.HTML,
             message_id=a.message_id,
             disable_web_page_preview=True
