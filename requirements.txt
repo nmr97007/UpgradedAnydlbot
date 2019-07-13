@@ -1,7 +1,7 @@
 requests
 youtube-dl
 git+git://github.com/google/chatbase-python.git
-
+tgcrypto
 Pillow
 hachoir
 PyDrive
