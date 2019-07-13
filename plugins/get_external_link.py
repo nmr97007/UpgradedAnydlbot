@@ -110,10 +110,10 @@ def get_link(bot, update):
                 logger.info(t_response)
                 t_response_arry = t_response.decode("UTF-8").split("\n")[-1].strip()
                 shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
-                adfulurl = requests.get(shorten_api_url).text
+                adfulurl = requests.get(t_response_arry).text
         bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(t_response_arry, max_days),
+            text=Translation.AFTER_GET_DL_LINK.format(adfulurl, max_days),
             parse_mode=pyrogram.ParseMode.HTML,
             message_id=a.message_id,
             disable_web_page_preview=True
