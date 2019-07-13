@@ -12,11 +12,11 @@ class Config(object):
     # Array to store users who are authorized to use the bot
     AUTH_USERS = set(str(x) for x in os.environ.get("AUTH_USERS", "").split())
     # reg: Procedures
-    UTUBE_BOT_USERS = []
-    SUPER_DLBOT_USERS = []
-    SUPER3X_DLBOT_USERS = []
-    SUPER7X_DLBOT_USERS = []
-    BANNED_USERS = []
+    UTUBE_BOT_USERS =  os.environ.get("UTUBE_BOT_USERS", "")
+    SUPER_DLBOT_USERS =  os.environ.get("SUPER_DLBOT_USERS", "")
+    SUPER3X_DLBOT_USERS =  os.environ.get("SUPER3X_DLBOT_USERS", "")
+    SUPER7X_DLBOT_USERS =  os.environ.get("SUPER7X_DLBOT_USERS", "")
+    BANNED_USERS =  os.environ.get("BANNED_USERS", "")
     # Wat was I thinking? :\
     # the download location, where the HTTP Server runs
     DOWNLOAD_LOCATION = "./DOWNLOADS"
