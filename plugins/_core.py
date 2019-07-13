@@ -390,7 +390,7 @@ def button(bot, update):
                     "RGB").save(thumb_image_path)
                 img = Image.open(thumb_image_path)
                 # https://stackoverflow.com/a/37631799/4723940
-                img.thumbnail((150, 150))
+                img.thumbnail((300, 300))
                 img.save(thumb_image_path, "JPEG")
                 # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#create-thumbnails
             else:
