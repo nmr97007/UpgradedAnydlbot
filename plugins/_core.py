@@ -196,7 +196,7 @@ def echo(bot, update):
                     tg_send_type, format_id, format_ext)
                 inline_keyboard.append([
                     pyrogram.InlineKeyboardButton(
-                        "Video File", callback_data=cb_string.encode("UTF-8"))
+                        "Download", callback_data=cb_string.encode("UTF-8"))
                 ])
             reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
             # logger.info(reply_markup)
