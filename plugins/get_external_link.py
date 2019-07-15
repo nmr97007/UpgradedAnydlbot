@@ -62,8 +62,6 @@ def get_link(bot, update):
             progress_args=(Translation.DOWNLOAD_START, a.message_id, update.chat.id, c_time)
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
-        upload_name=after_download_file_name.rsplit("/",1)[-1]
-        upload_name=upload_name.replace(" ","_")
         bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -85,16 +83,14 @@ def get_link(bot, update):
             max_days = 0
         else:
             url = "https://api.anonymousfiles.io/"
-            max_days = 5
+            max_days = 3
             command_to_exec = [
                 "curl",
                 "-F", "file=@"+after_download_file_name,
-                "-F", "expires_at=5d",
+                "-F", "expires_at=3d",
                 "-F", "no_index=true",
                 url
             ]
-            
-            
             bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
