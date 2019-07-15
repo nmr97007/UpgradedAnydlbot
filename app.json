@@ -55,6 +55,11 @@
       "value": "608679953",
       "required": false
     },
+    "BANNED_USERS": {
+      "description": "id of banned users",
+      "value": "",
+      "required": false
+    },
   
     "DEF_THUMB_NAIL_VID_S": {
       "description": "default thumbnail to be used in the videos. Incase, youtube-dl is unable to find a thumbnail.",
