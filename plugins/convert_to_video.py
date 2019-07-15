@@ -32,9 +32,9 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["converttovideo"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["convert2video"]))
 def convert_to_video(bot, update):
-    TRChatBase(update.from_user.id, update.text, "converttovideo")
+    TRChatBase(update.from_user.id, update.text, "convert2video")
     if str(update.from_user.id) not in Config.SUPER_DLBOT_USERS:
         bot.send_message(
             chat_id=update.chat.id,
