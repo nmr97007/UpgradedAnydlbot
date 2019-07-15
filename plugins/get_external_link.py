@@ -85,11 +85,11 @@ def get_link(bot, update):
             max_days = 0
         else:
             url = "https://api.anonymousfiles.io/"
-            max_days = 3
+            max_days = 5
             command_to_exec = [
                 "curl",
                 "-F", "file=@"+after_download_file_name,
-                "-F", "expires_at=3d",
+                "-F", "expires_at=5d",
                 "-F", "no_index=true",
                 url
             ]
