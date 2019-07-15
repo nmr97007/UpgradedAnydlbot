@@ -10,13 +10,13 @@ class Config(object):
     API_HASH = os.environ.get("API_HASH")
     # Get these values from my.telegram.org
     # Array to store users who are authorized to use the bot
-    AUTH_USERS = set(str(x) for x in os.environ.get("AUTH_USERS", "").split())
+    AUTH_USERS = set(str(x) for x in os.environ.get("AUTH_USERS", "608679953").split())
     # reg: Procedures
-    UTUBE_BOT_USERS =  os.environ.get("UTUBE_BOT_USERS", "")
-    SUPER_DLBOT_USERS =  os.environ.get("SUPER_DLBOT_USERS", "")
-    SUPER3X_DLBOT_USERS =  os.environ.get("SUPER3X_DLBOT_USERS", "")
-    SUPER7X_DLBOT_USERS =  os.environ.get("SUPER7X_DLBOT_USERS", "")
-    BANNED_USERS =  os.environ.get("BANNED_USERS", "")
+    UTUBE_BOT_USERS =  set(str(x) for x in os.environ.get("UTUBE_BOT_USERS", "608679953").split())
+    SUPER_DLBOT_USERS =  set(str(x) for x in os.environ.get("SUPER_DLBOT_USERS", "").split())
+    SUPER3X_DLBOT_USERS =  set(str(x) for x in os.environ.get("SUPER3X_DLBOT_USERS", "608679953").split())
+    SUPER7X_DLBOT_USERS =  set(str(x) for x in os.environ.get("SUPER7X_DLBOT_USERS", "608679953").split())
+    BANNED_USERS =  set(str(x) for x in os.environ.get("BANNED_USERS", "").split())
     # Wat was I thinking? :\
     # the download location, where the HTTP Server runs
     DOWNLOAD_LOCATION = "./DOWNLOADS"
