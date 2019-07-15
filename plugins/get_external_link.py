@@ -13,6 +13,7 @@ import os
 import requests
 import subprocess
 import time
+import json
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -61,6 +62,8 @@ def get_link(bot, update):
             progress_args=(Translation.DOWNLOAD_START, a.message_id, update.chat.id, c_time)
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
+        upload_name=after_download_file_name.rsplit("/",1)[-1]
+        upload_name=upload_name.replace(" ","_")
         bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -81,16 +84,17 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://transfer.sh/{}.{}".format(str(update.from_user.id), str(download_extension))
-            
-            max_days = "5"
+            url = "https://api.anonymousfiles.io/"
+            max_days = 3
             command_to_exec = [
                 "curl",
-                # "-H", 'Max-Downloads: 1',
-                "-H", 'Max-Days: 5', # + max_days + '',
-                "--upload-file", after_download_file_name,
+                "-F", "file=@"+after_download_file_name,
+                "-F", "expires_at=3d",
+                "-F", "no_index=true",
                 url
             ]
+            
+            
             bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
@@ -109,9 +113,11 @@ def get_link(bot, update):
                 return False
             else:
                 logger.info(t_response)
-                t_response_arry = t_response.decode("UTF-8").split("\n")[-1].strip()
-                shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
-                adfulurl = requests.get(shorten_api_url).text
+                print ( t_response )
+                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
+                
+                #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
+                #adfulurl = requests.get(shorten_api_url).text
         bot.edit_message_text(
             chat_id=update.chat.id,
             text=Translation.AFTER_GET_DL_LINK.format(t_response_arry, max_days),
