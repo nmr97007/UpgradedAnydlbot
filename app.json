@@ -35,17 +35,17 @@
       "value": "608679953"
     },
     "SUPER3X_DLBOT_USERS": {
-      "description": "partial superuser",
+      "description": "Id of 2nd plan users",
       "value": "608679953",
       "required": false
     },
     "SUPER7X_DLBOT_USERS": {
-      "description": "partial superuser",
+      "description": "Id of Top plan users",
       "value": "608679953",
       "required": false
     },
     "SUPER_DLBOT_USERS": {
-      "description": "super user",
+      "description": "Id of 1st basic plan users",
       "value": "608679953",
       "required": false
     }
@@ -56,7 +56,7 @@
       "required": false
     },
     "BANNED_USERS": {
-      "description": "id of banned users",
+      "description": "Id of banned users",
       "value": "",
       "required": false
     },
