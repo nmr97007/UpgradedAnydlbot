@@ -117,7 +117,7 @@ def get_link(bot, update):
             else:
                 logger.info(t_response)
                 print ( t_response )
-                t_response_arry = "https://ufile.io/" + json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['slug']
+                t_response_arry = "https://ufile.io/" + json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())["data"]['slug']
                
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
