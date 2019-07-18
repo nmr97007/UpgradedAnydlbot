@@ -82,10 +82,8 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://api.anonymousfiles.io/"
+            url = "https://filebin.net"
             max_days = 5
-            
-            curl -X POST -d @test.txt https://filebin.net
             
             command_to_exec = [
                 "curl",
