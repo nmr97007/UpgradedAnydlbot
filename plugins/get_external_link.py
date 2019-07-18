@@ -14,7 +14,6 @@ import requests
 import subprocess
 import time
 import json
-import re
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -133,12 +132,11 @@ def get_link(bot, update):
             else:
                 logger.info(t_response)
                 print ( t_response )
-                
-                
-                # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['links']['href']
+                # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
                 scan = re.match(r'\"file\",[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
-                    
+                #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
+                #adfulurl = requests.get(shorten_api_url).text
         bot.edit_message_text(
             chat_id=update.chat.id,
             text=Translation.AFTER_GET_DL_LINK.format(scan.group(1), max_days),
@@ -156,16 +154,3 @@ def get_link(bot, update):
             text=Translation.REPLY_TO_DOC_GET_LINK,
             reply_to_message_id=update.message_id
         )
-8"),
-                    message_id=a.message_id
-                )
-                return False
-            else:
-                logger.info(t_response)
-                print ( t_response )
-                
-                
-                # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['links']['href']
-                scan = re.match(r'\"file\",[\s\n]*"href":\s*\"(.+)\"', t_response)
-                
-         
