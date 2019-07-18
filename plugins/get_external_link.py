@@ -1,37 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
- 
+
 # the logging things
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
- 
+
 from datetime import datetime
 import os
 import requests
 import subprocess
 import time
 import json
- 
+
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
     from config import Config
- 
+
 # the Strings used for this "thing"
 from translation import Translation
- 
+
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
- 
+
 from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 from pydrive.drive import GoogleDrive
- 
- 
+
+
 @pyrogram.Client.on_message(pyrogram.Filters.command(["getlink"]))
 def get_link(bot, update):
     TRChatBase(update.from_user.id, update.text, "getlink")
@@ -62,8 +62,6 @@ def get_link(bot, update):
             progress_args=(Translation.DOWNLOAD_START, a.message_id, update.chat.id, c_time)
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
-        upload_name=after_download_file_name.rsplit("/",1)[-1]
-        upload_name=upload_name.replace(" ","_")
         bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -84,20 +82,15 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://up.uploadfiles.io/upload"
+            url = "https://api.anonymousfiles.io/"
             max_days = 5
-            timeseconds = int(time.time())
-            timesecondsplusexpiry = int(time.time()) + (max_days*24*60*60)
             command_to_exec = [
                 "curl",
-                "-F", "filesUploaded=@"+after_download_file_name,
-                "-F", "expire="+str(timesecondsplusexpiry),
-                "-F", "category=file",
-                "-F", "comments=0",
+                "-F", "file=@"+after_download_file_name,
+                "-F", "expires_at=5d",
+                "-F", "no_index=true",
                 url
             ]
-           
-           
             bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
@@ -117,8 +110,8 @@ def get_link(bot, update):
             else:
                 logger.info(t_response)
                 print ( t_response )
-                t_response_arry = "https://ufile.io/" + json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())["data"]['slug']
-               
+                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
+                
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
         bot.edit_message_text(
