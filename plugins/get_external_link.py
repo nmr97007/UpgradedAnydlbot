@@ -136,7 +136,7 @@ def get_link(bot, update):
                 
                 
                 # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['links']['href']
-                scan = re.match(r'\"file\",[\s\n]*"href":\s*\"(.+)\"', t_response)
+                scan = re.match(r'\"file\",[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
                     
         bot.edit_message_text(
@@ -156,3 +156,16 @@ def get_link(bot, update):
             text=Translation.REPLY_TO_DOC_GET_LINK,
             reply_to_message_id=update.message_id
         )
+8"),
+                    message_id=a.message_id
+                )
+                return False
+            else:
+                logger.info(t_response)
+                print ( t_response )
+                
+                
+                # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['links']['href']
+                scan = re.match(r'\"file\",[\s\n]*"href":\s*\"(.+)\"', t_response)
+                
+         
