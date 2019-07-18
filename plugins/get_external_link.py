@@ -84,13 +84,37 @@ def get_link(bot, update):
         else:
             url = "https://api.anonymousfiles.io/"
             max_days = 5
+            
+            curl -X POST -d @test.txt https://filebin.net
+            
             command_to_exec = [
                 "curl",
-                "-F", "file=@"+after_download_file_name,
-                "-F", "expires_at=5d",
-                "-F", "no_index=true",
+                "-X", "POST",
+                "-d", "@"+after_download_file_name,
+                "-H", "Filename: "+after_download_file_name,
                 url
             ]
+            
+            # Example of t_response
+            # {
+                # "filename": "Hell.srt",
+                # "bin": "s64jjtgagpgevz8h",
+                # "bytes": 96237,
+                # "mime": "text/plain; charset=utf-8",
+                # "created": "2019-07-18T10:13:20.677271056Z",
+                # "links": [
+                    # {
+                        # "rel": "file",
+                        # "href": "https://filebin.net/s64jjtghgpgevz8h/Hellboy.srt"
+                    # },
+                    # {
+                        # "rel": "bin",
+                        # "href": "https://filebin.net/s64jjtghgpgevz8h"
+                    # }
+                # ],
+                # "datetime": "0001-01-01T00:00:00Z"
+            # }
+                
             bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
@@ -110,7 +134,9 @@ def get_link(bot, update):
             else:
                 logger.info(t_response)
                 print ( t_response )
-                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
+                
+                
+                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['links']['href']
                 
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
