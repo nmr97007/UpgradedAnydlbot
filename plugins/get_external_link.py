@@ -134,8 +134,7 @@ def get_link(bot, update):
                 logger.info(t_response)
                 print ( t_response )
                 # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
-                
-                scan = re.search(r'.*\"file\"\,[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
+                scan = re.match(r'.*\"file\",[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
