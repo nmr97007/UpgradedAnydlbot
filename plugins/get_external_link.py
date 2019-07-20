@@ -83,35 +83,16 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://filebin.net"
+            url = "https://up.uploadfiles.io/upload"
             max_days = 5
             
             command_to_exec = [
                 "curl",
-                "--data-binary", "@"+after_download_file_name,
-                "-H", "Filename: "+after_download_file_name,
+                "-F", "file=@"+after_download_file_name,
                 url
             ]
-            
-            # Example of t_response
-            # {
-                # "filename": "Hell.srt",
-                # "bin": "s64jjtgagpgevz8h",
-                # "bytes": 96237,
-                # "mime": "text/plain; charset=utf-8",
-                # "created": "2019-07-18T10:13:20.677271056Z",
-                # "links": [
-                    # {
-                        # "rel": "file",
-                        # "href": "https://filebin.net/s64jjtghgpgevz8h/Hellboy.srt"
-                    # },
-                    # {
-                        # "rel": "bin",
-                        # "href": "https://filebin.net/s64jjtghgpgevz8h"
-                    # }
-                # ],
-                # "datetime": "0001-01-01T00:00:00Z"
-            # }
+
+            # {"status":true,"id":5433363,"url":"https:\/\/ufile.io\/lype2ulr","destination":"https:\/\/uploadfiles.io\/lype2ulr","name":"test.txt","filename":"lype2ulr-test.txt","slug":"lype2ulr","size":"5 Bytes","type":"doc","expiry":"4 Weeks"}
                 
             bot.edit_message_text(
                 text=Translation.UPLOAD_START,
@@ -132,15 +113,16 @@ def get_link(bot, update):
             else:
                 logger.info(t_response)
                 print ( t_response )
-                # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
+
+                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['destination']
                 
-                scan = re.search(r'.*\"file\"\,[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
+                # scan = re.search(r'.*\"file\"\,[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
         bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(scan.group(1), max_days),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_arry, max_days),
             parse_mode=pyrogram.ParseMode.HTML,
             message_id=a.message_id,
             disable_web_page_preview=True
