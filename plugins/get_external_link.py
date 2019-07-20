@@ -83,7 +83,7 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://filebin.net"
+            url = "https://up.uploadfiles.io/upload"
             max_days = 5
             
             command_to_exec = [
@@ -135,7 +135,7 @@ def get_link(bot, update):
                 print ( t_response )
                 # t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
                 
-                scan = re.search(r'.*\"file\"\,[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
+                scan = re.search(r'.*\"file\"\,[\s\n]*"slug":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
