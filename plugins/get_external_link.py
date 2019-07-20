@@ -89,7 +89,7 @@ def get_link(bot, update):
             command_to_exec = [
                 "curl",
                 "-F", "file=@"+after_download_file_name,
-                "-F", "expiry=2 Weeks",
+                "-F", "hours= 24",
                 "-H", "Transfer-Encoding: chunked",
                 url
             ]
