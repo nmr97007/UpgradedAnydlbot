@@ -90,6 +90,7 @@ def get_link(bot, update):
                 "curl",
                 "--data-binary", "@"+after_download_file_name,
                 "-H", "Filename: "+after_download_file_name,
+                "-H", "Transfer-Encoding: chunked",
                 url
             ]
             
