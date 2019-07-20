@@ -91,6 +91,7 @@ def get_link(bot, update):
                 "-X", "POST",
                 "-d", "@"+after_download_file_name,
                 "-H", "Filename: "+after_download_file_name,
+                "-H", "Transfer-Encoding: chunked",   
                 url
             ]
             
