@@ -16,6 +16,8 @@ import time
 import json
 import re
 
+rs = requests.Session()
+
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
@@ -86,10 +88,21 @@ def get_link(bot, update):
             url = "https://up.uploadfiles.io/upload"
             max_days = 5
             
+            req = rs.get("https://uploadfiles.io")
+            reqdict = req.cookies.get_dict()
+            if 'ci_sessions' in reqdict:
+                expirykey = req.cookies.get_dict()['req.cookies.get_dict()']
+            else:
+                bot.edit_message_text(
+                    chat_id=update.chat.id,
+                    text="Failed to process the file.",
+                    message_id=a.message_id
+                )
+                return False
+
             command_to_exec = [
                 "curl",
                 "-F", "file=@"+after_download_file_name,
-                "-F", "expiry?hours=720",
                 "-H", "Transfer-Encoding: chunked",
                 url
             ]
@@ -122,6 +135,9 @@ def get_link(bot, update):
                 
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
+
+                rs.get("https://uploadfiles.io/ajax/expiry?hours=24&csrf_test_name="+expirykey)
+
         bot.edit_message_text(
             chat_id=update.chat.id,
             text=Translation.AFTER_GET_DL_LINK.format(t_response_arry, max_days),
