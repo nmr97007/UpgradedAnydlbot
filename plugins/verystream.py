@@ -14,6 +14,7 @@ import requests
 import subprocess
 import time
 import json
+import re
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -62,8 +63,6 @@ def get_link(bot, update):
             progress_args=(Translation.DOWNLOAD_START, a.message_id, update.chat.id, c_time)
         )
         download_extension = after_download_file_name.rsplit(".", 1)[-1]
-        upload_name=after_download_file_name.rsplit("/",1)[-1]
-        upload_name=upload_name.replace(" ","_")
         bot.edit_message_text(
             text=Translation.SAVED_RECVD_DOC_FILE,
             chat_id=update.chat.id,
@@ -85,16 +84,18 @@ def get_link(bot, update):
             max_days = 0
         else:
             url = "https://api.verystream.com/"
-            max_days = 3
+            max_days = 5
+            
             command_to_exec = [
                 "curl",
                 "-F", "file=@"+after_download_file_name,
-                "-F", "expires_at=3d",
-                "-F", "no_index=true",
+                "-F", "expiry?hours=720",
+                "-H", "Transfer-Encoding: chunked",
                 url
             ]
-            
-            
+
+            # {"status":200,"msg":"OK","result":{"name":"how-to-create-edu-email-address-free--unlimited-google-drive-storage---100-working---tech-sahil_5.webm","size":"44075872","sha1":"43f68b9245d2f22201ce269b52ecd0d87e868b6b","content_type":"video\/webm","id":"j2WaFYK8y1w","url":"https:\/\/verystream.com\/stream\/j2WaFYK8y1w\/how-to-create-edu-email-address-free--unlimited-google-drive-storage---100-working---tech-sahil_5.webm"}}
+                
             bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
@@ -114,13 +115,16 @@ def get_link(bot, update):
             else:
                 logger.info(t_response)
                 print ( t_response )
+
                 t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
+                
+                # scan = re.search(r'.*\"file\"\,[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
         bot.edit_message_text(
             chat_id=update.chat.id,
-            text=Translation.AFTER_GET_DL_LINK.format(url, max_days),
+            text=Translation.AFTER_GET_DL_LINK.format(t_response_arry, max_days),
             parse_mode=pyrogram.ParseMode.HTML,
             message_id=a.message_id,
             disable_web_page_preview=True
