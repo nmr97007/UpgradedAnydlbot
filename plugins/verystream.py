@@ -83,7 +83,7 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://ohsomp4wow.verystream.net/uploadproxy/k8uW0ztncF0aeIe3"
+            url = "https://ohsomp4wow.verystream.net/"
             max_days = 5
             
             command_to_exec = [
