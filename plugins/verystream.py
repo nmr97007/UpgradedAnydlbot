@@ -83,7 +83,7 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else:
-            url = "https://api.verystream.net/"
+            url = "https://api.verystream.com/"
             max_days = 5
             
             command_to_exec = [
