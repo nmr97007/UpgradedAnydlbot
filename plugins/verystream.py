@@ -116,7 +116,7 @@ def get_link(bot, update):
                 logger.info(t_response)
                 print ( t_response )
 
-                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['url']
+                t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-1].strip())['result']['url']
                 
                 # scan = re.search(r'.*\"file\"\,[\s\n]*"href":\s*\"(.+)\"', t_response.decode("UTF-8"))
                 
