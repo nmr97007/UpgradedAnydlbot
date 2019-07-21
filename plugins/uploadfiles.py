@@ -91,7 +91,7 @@ def get_link(bot, update):
             req = rs.get("https://uploadfiles.io")
             reqdict = req.cookies.get_dict()
             if 'ci_sessions' in reqdict:
-                expirykey = req.cookies.get_dict()['req.cookies.get_dict()']
+                expirykey = req.cookies.get_dict()['ci_sessions']
             else:
                 bot.edit_message_text(
                     chat_id=update.chat.id,
