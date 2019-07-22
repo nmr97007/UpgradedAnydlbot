@@ -102,9 +102,9 @@ def get_link(bot, update):
 
             command_to_exec = [
                 "curl",
-                "--cookie", "__cfduid="+reqdict['__cfduid']
-                "--cookie", "ci_sessions="+reqdict['ci_sessions']
-                "--cookie", "csrf_cookie_name="+reqdict['csrf_cookie_name']
+                "--cookie", "__cfduid="+reqdict['__cfduid'],
+                "--cookie", "ci_sessions="+reqdict['ci_sessions'],
+                "--cookie", "csrf_cookie_name="+reqdict['csrf_cookie_name'],
                 "-F", "file=@"+after_download_file_name,
                 "-H", "Transfer-Encoding: chunked",
                 url
