@@ -91,7 +91,7 @@ def get_link(bot, update):
             req = rs.get("https://uploadfiles.io")
             reqdict = req.cookies.get_dict()
             if 'ci_sessions' in reqdict:
-                expirykey = req.cookies.get_dict()['ci_sessions']
+                expirykey = reqdict['ci_sessions']
             else:
                 bot.edit_message_text(
                     chat_id=update.chat.id,
@@ -102,6 +102,9 @@ def get_link(bot, update):
 
             command_to_exec = [
                 "curl",
+                "--cookie", "__cfduid="+reqdict['__cfduid']
+                "--cookie", "ci_sessions="+reqdict['ci_sessions']
+                "--cookie", "csrf_cookie_name="+reqdict['csrf_cookie_name']
                 "-F", "file=@"+after_download_file_name,
                 "-H", "Transfer-Encoding: chunked",
                 url
