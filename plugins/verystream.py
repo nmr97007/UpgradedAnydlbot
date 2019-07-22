@@ -90,7 +90,7 @@ def get_link(bot, update):
             verystreamKEY = 'JcGF53rcBri'
             
             # check video extension
-            if not after_download_file_name.lower().endswith(('.mp4', '.mkv', '.avi')):
+            if not after_download_file_name.lower().endswith(('.mp4', '.mkv', '.avi', '.webm')):
                 bot.edit_message_text(
                     chat_id=update.chat.id,
                     text="This is not a video.",
@@ -144,8 +144,8 @@ def get_link(bot, update):
                 t_response_arry = json.loads(t_response.decode("UTF-8").split("\n")[-2].strip())['result']['url']
                 
 
-                rget = rs.get('https://uploadfiles.io/ajax/expiry?hours=1&csrf_test_name='+expirykey)
-                print(rget.text)
+                #rget = rs.get('https://uploadfiles.io/ajax/expiry?hours=1&csrf_test_name='+expirykey)
+               # print(rget.text)
 
         bot.edit_message_text(
             chat_id=update.chat.id,
