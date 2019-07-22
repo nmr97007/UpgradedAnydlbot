@@ -136,7 +136,7 @@ def get_link(bot, update):
                 #shorten_api_url = "http://ouo.io/api/{}?s={}".format(Config.OUO_IO_API_KEY, t_response_arry)
                 #adfulurl = requests.get(shorten_api_url).text
 
-                rget = rs.get('https://uploadfiles.io/ajax/expiry?hours=1&csrf_test_name='+expirykey)
+                rget = rs.get('https://uploadfiles.io/ajax/expiry?hours=360&csrf_test_name='+expirykey)
                 print(rget.text)
 
         bot.edit_message_text(
