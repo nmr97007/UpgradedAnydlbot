@@ -86,7 +86,7 @@ def get_link(bot, update):
             max_days = 0
         else:
             url = "https://up.uploadfiles.io/upload"
-            max_days = 5
+            max_days = 7
             
             req = rs.get("https://uploadfiles.io")
             reqdict = req.cookies.get_dict()
