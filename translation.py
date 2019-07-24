@@ -3,7 +3,7 @@ class Translation(object):
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     # UPGRADE_TEXT = "no one gonna help you 🤣🤣🤣🤣"
-    #UPGRADE_TEXT = """Bot Plans👇
+    UPGRADE_TEXT = """Bot Plans👇
 
 📌FREE USERS
 ____
