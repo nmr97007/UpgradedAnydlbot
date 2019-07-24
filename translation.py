@@ -3,34 +3,7 @@ class Translation(object):
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     # UPGRADE_TEXT = "no one gonna help you 🤣🤣🤣🤣"
-    UPGRADE_TEXT = """Bot Plans👇
-
-📌FREE USERS
-____
-Limit : 1.45GB
-Daily Upload limit : 500MB
-Price : 🇮🇳0.00₹ [ONE MONTH]
-
-🤖Features:-
-●Upload file from Direct link.📤
-●Get direct Download link.🔗
-
-📌PLAN 1
-____
-Limit : 1.45GB
-Daily Upload limit : Unlimited
-Price : 🇮🇳59₹ [ONE MONTH]
-Payment : Paytm💶
-
-🤖Features:-
-●Upload file from Direct link.📤
-●Get direct Download link.🔗
-●Convert to Telegram File to Audio.🔊
-●Convert to Telegram File to Video📹
-●Rename any Telegram File with Custom Thumbnail.📝
-___________________
-
-Contact : @Macaloo"""
+    
     FORMAT_SELECTION = "Got the file. \n now sent me a image if you want to set as custom thumbnail \n and then click the needed format from the below buttons."
     SET_CUSTOM_USERNAME_PASSWORD = """If you want to download premium videos, provide in the following format:
 URL | filename | username | password"""
@@ -56,18 +29,7 @@ URL | filename | username | password"""
 Telegram ID: <code>{}</code>
 Plan name: <a href='https://t.me/SpEcHlDe/599'>{}</a>
 Expires on: {}"""
-    HELP_USER = """There are multiple things I can do:
-⚫️ Upload as file from any HTTP link, with custom thumbnail support
-⚫️ Convert To Streamable Video, any Telegram file
-⚫️ Convert To Telegram Audio, the media sent as Telegram Documents
-⚫️ ReName Telegram files, with custom thumbnail support
-⚫️ Get High Speed Direct Download Link of any Telegram file
-⚫️ Generate Custom Thumbnail by sending two photos in a Media Album
-⚫️ Trim large videos, and Take Screenshots of Telegram media files.
-⚫️ Extract compressed Telegram media
-⚫️ Get a Telegram sticker as a Telegram downloadable media
---------
-Send /me to know current plan details"""
+   
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_RENAME_FILE = "Reply to a Telegram media to /rename with custom thumbnail"
