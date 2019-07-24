@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+uploadfiles.io#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
 
@@ -35,9 +35,9 @@ from helper_funcs.display_progress import progress_for_pyrogram
 from pydrive.drive import GoogleDrive
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["uploadfiles"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["uploadfiles.io"]))
 def get_link(bot, update):
-    TRChatBase(update.from_user.id, update.text, "uploadfiles")
+    TRChatBase(update.from_user.id, update.text, "uploadfiles.io")
     if str(update.from_user.id) in Config.BANNED_USERS:
         bot.send_message(
             chat_id=update.chat.id,
