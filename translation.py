@@ -1,5 +1,5 @@
 class Translation(object):
-    START_TEXT = """Hi! please send me any vaild file url \n I will upload to Telegram as file."""
+    START_TEXT = """."""
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     # UPGRADE_TEXT = "no one gonna help you 🤣🤣🤣🤣"
