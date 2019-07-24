@@ -84,8 +84,6 @@ def get_link(bot, update):
             adfulurl = file_inance.webContentLink
             max_days = 0
         else: 
-            str(update.from_user.id) in Config.G_DRIVE_AUTH_DRQ:
-            gauth = Config.G_DRIVE_AUTH_DRQ[str(update.from_user.id)]
             url = "https://srv-file5.gofile.io/upload"
             max_days = 5
             timeseconds = int(time.time())
