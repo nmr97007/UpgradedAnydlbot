@@ -3,7 +3,7 @@ class Translation(object):
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     # UPGRADE_TEXT = "no one gonna help you 🤣🤣🤣🤣"
-    UPGRADE_TEXT = """Bot Plans👇
+    #UPGRADE_TEXT = """Bot Plans👇
 
 📌FREE USERS
 ____
@@ -56,7 +56,7 @@ URL | filename | username | password"""
 Telegram ID: <code>{}</code>
 Plan name: <a href='https://t.me/SpEcHlDe/599'>{}</a>
 Expires on: {}"""
-    HELP_USER = """There are multiple things I can do:
+    #HELP_USER = """There are multiple things I can do:
 ⚫️ Upload as file from any HTTP link, with custom thumbnail support
 ⚫️ Convert To Streamable Video, any Telegram file
 ⚫️ Convert To Telegram Audio, the media sent as Telegram Documents
